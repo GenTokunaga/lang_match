@@ -1,0 +1,2 @@
+class LessonTicketMaster < ApplicationRecord
+end
