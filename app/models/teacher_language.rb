@@ -1,4 +1,4 @@
 class TeacherLanguage < ApplicationRecord
-  belong_to :teacher
-  belong_to :mas_language
+  belongs_to :teacher
+  belongs_to :mas_language
 end

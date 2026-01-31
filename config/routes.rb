@@ -1,17 +1,26 @@
 Rails.application.routes.draw do
-  devise_for :teachers
-  devise_for :admins
-  devise_for :students
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  devise_for :teachers, controllers: {
+    sessions: 'admins/sessions',
+  }
+  devise_for :admins, controllers: {
+    sessions: 'admins/sessions',
+  }
+  devise_for :students, controllers: {
+    sessions: 'admins/sessions',
+  }
 
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
-  get "up" => "rails/health#show", as: :rails_health_check
+  # TODO: 動作確認のために一時的に管理ユーザーページをルート。のちに削除 or 変更
+  root 'admins/teachers#index'
 
-  # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
-  # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
-  # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
+  namespace :admins do
+    resources :teachers, only: %i[index show new edit create update destroy]
+  end
 
-  # Defines the root path route ("/")
-  # root "posts#index"
+  namespace :students do
+    root to: 'dashboard#index'
+  end
+
+  namespace :teachers do
+    root to: 'dashboard#index'
+  end
 end

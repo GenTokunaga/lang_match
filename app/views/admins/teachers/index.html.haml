@@ -1,0 +1,8 @@
+- content_for :title, "Teachers"
+%div.container
+  %p{style: "color: green"}= notice
+  %h1 講師一覧
+  %div
+    - @admins_teachers.each do |admins_teacher|
+      %div= link_to admins_teacher.name, admins_teacher_path(admins_teacher)
+  = link_to "新規登録", new_admins_teacher_path, class: class_names("btn btn-primary my-3")

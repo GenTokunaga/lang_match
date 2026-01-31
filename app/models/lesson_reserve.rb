@@ -1,4 +1,4 @@
 class LessonReserve < ApplicationRecord
-  belong_to :student
-  belong_to :lesson_slot
+  belongs_to :student
+  belongs_to :lesson_slot
 end

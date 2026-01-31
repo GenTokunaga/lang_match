@@ -1,0 +1,44 @@
+ja:
+  time:
+    formats:
+      default: "%Y/%m/%d %H:%M"
+  activerecord:
+    models:
+      admin: "管理者"
+      student: "生徒"
+      teacher: "講師"
+    attributes:
+      admin:
+        name: "ユーザー名"
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "パスワード(確認用)"
+      student:
+        name: "ユーザー名"
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "パスワード(確認用)"
+      teacher:
+        name: "ユーザー名"
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "パスワード(確認用)"
+        profile: "プロフィール"
+  simple_form:
+    labels:
+      admin:
+        name: "ユーザー名"
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "パスワード(確認用)"
+      student:
+        name: "ユーザー名"
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "パスワード(確認用)"
+      teacher:
+        name: "ユーザー名"
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "パスワード(確認用)"
+        profile: "プロフィール"
