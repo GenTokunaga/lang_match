@@ -1,0 +1,2 @@
+class MasTicketPrice < ApplicationRecord
+end

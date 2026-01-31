@@ -1,2 +1,0 @@
-class MasLessonTicket < ApplicationRecord
-end

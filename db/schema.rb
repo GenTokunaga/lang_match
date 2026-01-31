@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_01_31_091503) do
+ActiveRecord::Schema[8.1].define(version: 2026_01_31_091502) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -60,45 +60,47 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_31_091503) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
-  create_table "lesson_availables", force: :cascade do |t|
+  create_table "lesson_reserves", force: :cascade do |t|
     t.datetime "created_at", null: false
-    t.date "date", null: false
-    t.bigint "mas_lesson_language_id", null: false
-    t.bigint "mas_lesson_time_id", null: false
-    t.bigint "teacher_id", null: false
-    t.datetime "updated_at", null: false
-    t.index ["mas_lesson_language_id"], name: "index_lesson_availables_on_mas_lesson_language_id"
-    t.index ["mas_lesson_time_id"], name: "index_lesson_availables_on_mas_lesson_time_id"
-    t.index ["teacher_id", "date", "mas_lesson_time_id"], name: "idx_on_teacher_id_date_mas_lesson_time_id_958adbc2de", unique: true
-    t.index ["teacher_id"], name: "index_lesson_availables_on_teacher_id"
-  end
-
-  create_table "lesson_reserveds", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.bigint "lesson_available_id", null: false
+    t.bigint "lesson_slot_id", null: false
     t.bigint "student_id", null: false
     t.datetime "updated_at", null: false
-    t.index ["lesson_available_id"], name: "index_lesson_reserveds_on_lesson_available_id"
-    t.index ["student_id", "lesson_available_id"], name: "index_lesson_reserveds_on_student_id_and_lesson_available_id", unique: true
-    t.index ["student_id"], name: "index_lesson_reserveds_on_student_id"
+    t.index ["lesson_slot_id"], name: "index_lesson_reserves_on_lesson_slot_id", unique: true
+    t.index ["student_id"], name: "index_lesson_reserves_on_student_id"
   end
 
-  create_table "mas_lesson_languages", force: :cascade do |t|
+  create_table "lesson_slots", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.date "date", null: false
+    t.bigint "mas_lesson_slot_id", null: false
+    t.bigint "teacher_language_id", null: false
+    t.datetime "updated_at", null: false
+    t.index ["mas_lesson_slot_id"], name: "index_lesson_slots_on_mas_lesson_slot_id"
+    t.index ["teacher_language_id", "date", "mas_lesson_slot_id"], name: "idx_on_teacher_language_id_date_mas_lesson_slot_id_82f6b3f19f", unique: true
+    t.index ["teacher_language_id"], name: "index_lesson_slots_on_teacher_language_id"
+  end
+
+  create_table "mas_languages", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "language", null: false
     t.datetime "updated_at", null: false
+    t.index ["language"], name: "index_mas_languages_on_language", unique: true
   end
 
-  create_table "mas_lesson_tickets", force: :cascade do |t|
+  create_table "mas_lesson_slots", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.time "duration_minutes", null: false
+    t.time "start_time", null: false
+    t.datetime "updated_at", null: false
+    t.index ["start_time", "duration_minutes"], name: "index_mas_lesson_slots_on_start_time_and_duration_minutes", unique: true
+  end
+
+  create_table "mas_ticket_prices", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.integer "price", null: false
+    t.integer "ticket_count", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "mas_lesson_times", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.time "time", null: false
-    t.datetime "updated_at", null: false
+    t.index ["ticket_count", "price"], name: "index_mas_ticket_prices_on_ticket_count_and_price", unique: true
   end
 
   create_table "students", force: :cascade do |t|
@@ -120,13 +122,14 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_31_091503) do
     t.index ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true
   end
 
-  create_table "teach_availables", force: :cascade do |t|
+  create_table "teacher_languages", force: :cascade do |t|
     t.datetime "created_at", null: false
-    t.bigint "mas_lesson_language_id", null: false
+    t.bigint "mas_language_id", null: false
     t.bigint "teacher_id", null: false
     t.datetime "updated_at", null: false
-    t.index ["mas_lesson_language_id"], name: "index_teach_availables_on_mas_lesson_language_id"
-    t.index ["teacher_id"], name: "index_teach_availables_on_teacher_id"
+    t.index ["mas_language_id"], name: "index_teacher_languages_on_mas_language_id"
+    t.index ["teacher_id", "mas_language_id"], name: "index_teacher_languages_on_teacher_id_and_mas_language_id", unique: true
+    t.index ["teacher_id"], name: "index_teacher_languages_on_teacher_id"
   end
 
   create_table "teachers", force: :cascade do |t|
@@ -150,11 +153,10 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_31_091503) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "lesson_availables", "mas_lesson_languages"
-  add_foreign_key "lesson_availables", "mas_lesson_times"
-  add_foreign_key "lesson_availables", "teachers"
-  add_foreign_key "lesson_reserveds", "lesson_availables"
-  add_foreign_key "lesson_reserveds", "students"
-  add_foreign_key "teach_availables", "mas_lesson_languages"
-  add_foreign_key "teach_availables", "teachers"
+  add_foreign_key "lesson_reserves", "lesson_slots"
+  add_foreign_key "lesson_reserves", "students"
+  add_foreign_key "lesson_slots", "mas_lesson_slots"
+  add_foreign_key "lesson_slots", "teacher_languages"
+  add_foreign_key "teacher_languages", "mas_languages"
+  add_foreign_key "teacher_languages", "teachers"
 end

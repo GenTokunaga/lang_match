@@ -1,2 +1,0 @@
-class MasLessonTime < ApplicationRecord
-end
