@@ -1,0 +1,2 @@
+class MasLessonLanguage < ApplicationRecord
+end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_01_29_135515) do
+ActiveRecord::Schema[8.1].define(version: 2026_01_31_091503) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -63,20 +63,14 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_29_135515) do
   create_table "lesson_availables", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.date "date", null: false
-    t.bigint "lesson_language_master_id", null: false
-    t.bigint "lesson_time_master_id", null: false
+    t.bigint "mas_lesson_language_id", null: false
+    t.bigint "mas_lesson_time_id", null: false
     t.bigint "teacher_id", null: false
     t.datetime "updated_at", null: false
-    t.index ["lesson_language_master_id"], name: "index_lesson_availables_on_lesson_language_master_id"
-    t.index ["lesson_time_master_id"], name: "index_lesson_availables_on_lesson_time_master_id"
-    t.index ["teacher_id", "date", "lesson_time_master_id"], name: "idx_on_teacher_id_date_lesson_time_master_id_94a03e2b57", unique: true
+    t.index ["mas_lesson_language_id"], name: "index_lesson_availables_on_mas_lesson_language_id"
+    t.index ["mas_lesson_time_id"], name: "index_lesson_availables_on_mas_lesson_time_id"
+    t.index ["teacher_id", "date", "mas_lesson_time_id"], name: "idx_on_teacher_id_date_mas_lesson_time_id_958adbc2de", unique: true
     t.index ["teacher_id"], name: "index_lesson_availables_on_teacher_id"
-  end
-
-  create_table "lesson_language_masters", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.string "language", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "lesson_reserveds", force: :cascade do |t|
@@ -89,13 +83,19 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_29_135515) do
     t.index ["student_id"], name: "index_lesson_reserveds_on_student_id"
   end
 
-  create_table "lesson_ticket_masters", force: :cascade do |t|
+  create_table "mas_lesson_languages", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "language", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "mas_lesson_tickets", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.integer "price", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "lesson_time_masters", force: :cascade do |t|
+  create_table "mas_lesson_times", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.time "time", null: false
     t.datetime "updated_at", null: false
@@ -122,10 +122,10 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_29_135515) do
 
   create_table "teach_availables", force: :cascade do |t|
     t.datetime "created_at", null: false
-    t.bigint "lesson_language_master_id", null: false
+    t.bigint "mas_lesson_language_id", null: false
     t.bigint "teacher_id", null: false
     t.datetime "updated_at", null: false
-    t.index ["lesson_language_master_id"], name: "index_teach_availables_on_lesson_language_master_id"
+    t.index ["mas_lesson_language_id"], name: "index_teach_availables_on_mas_lesson_language_id"
     t.index ["teacher_id"], name: "index_teach_availables_on_teacher_id"
   end
 
@@ -150,11 +150,11 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_29_135515) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "lesson_availables", "lesson_language_masters"
-  add_foreign_key "lesson_availables", "lesson_time_masters"
+  add_foreign_key "lesson_availables", "mas_lesson_languages"
+  add_foreign_key "lesson_availables", "mas_lesson_times"
   add_foreign_key "lesson_availables", "teachers"
   add_foreign_key "lesson_reserveds", "lesson_availables"
   add_foreign_key "lesson_reserveds", "students"
-  add_foreign_key "teach_availables", "lesson_language_masters"
+  add_foreign_key "teach_availables", "mas_lesson_languages"
   add_foreign_key "teach_availables", "teachers"
 end
