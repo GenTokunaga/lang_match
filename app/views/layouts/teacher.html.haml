@@ -8,4 +8,8 @@
         %div.d-flex.justify-content-end
           = button_to "管理者に戻る", admins_impersonation_path(id: impersonator_admin_id), method: :delete, class: "btn btn-secondary m-3"
         %div{style: "color: green"}= "管理者ユーザーが代わりにログインしています"
+      - else
+        %div.d-flex.justify-content-end
+          = button_to "プロフィール", teachers_teacher_path(id: current_teacher.id), method: :get, class: "btn btn-secondary m-3"
+          = button_to "ログアウト", destroy_teacher_session_path, method: :delete, class: "btn btn-secondary m-3"
     = yield

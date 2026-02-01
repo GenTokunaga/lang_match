@@ -1,0 +1,14 @@
+-# frozen_string_literal: true
+%div
+  = simple_form_for([:teachers, @teacher]) do |f|
+    = f.error_notification
+    = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+    .form-inputs
+      - if @teacher.profile_image.attached?
+        %div= image_tag @teacher.profile_image.variant(:thumb)
+      = f.input :profile_image
+      = f.input :name
+      = f.input :profile
+      = f.collection_check_boxes :mas_language_ids, @mas_languages, :id, :language
+    .form-actions
+      = f.button :submit, "編集", class: class_names("btn btn-primary my-3")

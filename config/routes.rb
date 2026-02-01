@@ -6,11 +6,9 @@ Rails.application.routes.draw do
     sessions: 'students/sessions',
   }
   devise_for :teachers, controllers: {
+    registrations: 'teachers/registrations',
     sessions: 'teachers/sessions',
   }
-
-  # TODO: 動作確認のために一時的に管理ユーザーページをルート。のちに削除 or 変更
-  root 'admins/teachers#index'
 
   namespace :admins do
     root 'teachers#index'
@@ -24,6 +22,7 @@ Rails.application.routes.draw do
 
   namespace :teachers do
     root 'lesson_slots#index'
+    resources :teachers, only: %i[show edit update]
     resources :lesson_slots, only: %i[index new create destroy]
   end
 end

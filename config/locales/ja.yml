@@ -25,6 +25,7 @@ ja:
         password: "パスワード"
         password_confirmation: "パスワード(確認用)"
         profile: "プロフィール"
+        profile_image: "プロフィール画像"
   simple_form:
     labels:
       admin:
@@ -43,6 +44,7 @@ ja:
         password: "パスワード"
         password_confirmation: "パスワード(確認用)"
         profile: "プロフィール"
+        profile_image: "プロフィール画像"
       lesson_slot:
         date: "日付"
         mas_lesson_slot_id: "レッスン枠"
