@@ -33,6 +33,7 @@ group :development do
   gem 'web-console'
   gem 'html2haml' # haml変換のため追加
   gem 'letter_opener' # メール送信確認用のため追加
+  gem 'rails-erd' # 論理モデル可視化用に追加
 end
 
 group :test do

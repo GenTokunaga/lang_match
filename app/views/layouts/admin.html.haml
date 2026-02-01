@@ -3,6 +3,7 @@
   = render "layouts/header"
   %body
     %div.container
-      %div.d-flex.justify-content-end
-        = button_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-secondary m-3"
+      - if admin_signed_in?
+        %div.d-flex.justify-content-end
+          = button_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-secondary m-3"
     = yield

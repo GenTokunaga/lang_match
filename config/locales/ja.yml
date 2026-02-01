@@ -26,6 +26,14 @@ ja:
         password_confirmation: "パスワード(確認用)"
         profile: "プロフィール"
         profile_image: "プロフィール画像"
+  devise:
+    sessions:
+      admin:
+        signed_in: "管理者としてログインしました。"
+        signed_out: "管理者としてログアウトしました。"
+      teacher:
+        signed_in: "講師としてログインしました。"
+        signed_out: "講師としてログアウトしました。"
   simple_form:
     labels:
       admin:
