@@ -1,0 +1,12 @@
+-# frozen_string_literal: true
+%div
+  = simple_form_for([:teachers, @lesson_slot]) do |f|
+    = f.error_notification
+    = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+    .form-inputs
+      = f.label :date, class: class_names('control-label')
+      = f.date_field :date, class: class_names('form-control')
+      = f.input :mas_lesson_slot_id, collection: @mas_lesson_slots, label_method: :label, value_method: :id
+      = f.input :teacher_language_id, collection: @teacher_languages, label_method: :label, value_method: :id
+    .form-actions
+      = f.button :submit, "登録", class: class_names("btn btn-primary my-3")

@@ -2,6 +2,7 @@ ja:
   time:
     formats:
       default: "%Y/%m/%d %H:%M"
+      lesson_slot: "%H:%M"
   activerecord:
     models:
       admin: "管理者"
@@ -42,3 +43,7 @@ ja:
         password: "パスワード"
         password_confirmation: "パスワード(確認用)"
         profile: "プロフィール"
+      lesson_slot:
+        date: "日付"
+        mas_lesson_slot_id: "レッスン枠"
+        teacher_language_id: "言語"

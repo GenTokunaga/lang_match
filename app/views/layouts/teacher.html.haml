@@ -1,0 +1,11 @@
+!!!
+%html
+  = render "layouts/header"
+  %body
+    %div.container
+      - impersonator_admin_id = session[:impersonator_admin_id]
+      - if impersonator_admin_id.present?  
+        %div.d-flex.justify-content-end
+          = button_to "管理者に戻る", admins_impersonation_path(id: impersonator_admin_id), method: :delete, class: "btn btn-secondary m-3"
+        %div{style: "color: green"}= "管理者ユーザーが代わりにログインしています"
+    = yield

@@ -1,0 +1,6 @@
+- content_for :title, "New Lesson Slot"
+%div.container
+  %h1 レッスン枠登録
+  = render "form", lesson_slot: @lesson_slot
+  %div
+    = link_to "戻る", teachers_root_path, class: class_names("btn btn-secondary")

@@ -89,7 +89,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_31_091502) do
 
   create_table "mas_lesson_slots", force: :cascade do |t|
     t.datetime "created_at", null: false
-    t.time "duration_minutes", null: false
+    t.integer "duration_minutes", null: false
     t.time "start_time", null: false
     t.datetime "updated_at", null: false
     t.index ["start_time", "duration_minutes"], name: "index_mas_lesson_slots_on_start_time_and_duration_minutes", unique: true
