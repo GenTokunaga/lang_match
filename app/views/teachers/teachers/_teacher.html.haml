@@ -12,4 +12,4 @@
     = teacher.profile
   %div
     %strong 教えられる言語:
-    = teacher.mas_languages.map(&:language).join(', ')
+    = teacher.languages.values.map(&:text).join(",")

@@ -9,6 +9,6 @@
       = f.input :profile_image
       = f.input :name
       = f.input :profile
-      = f.collection_check_boxes :mas_language_ids, @mas_languages, :id, :language
+      = f.input :languages, as: :check_boxes, include_hidden: false
     .form-actions
       = f.button :submit, "編集", class: class_names("btn btn-primary my-3")

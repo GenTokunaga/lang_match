@@ -31,11 +31,10 @@ class Teachers::LessonSlotsController < Teachers::BaseController
   end
 
   def lesson_slot_params
-    params.expect(lesson_slot: %i[teacher_language_id date mas_lesson_slot_id])
+    params.expect(lesson_slot: %i[date mas_lesson_slot_id language])
   end
 
   def load_collections
     @mas_lesson_slots = MasLessonSlot.all
-    @teacher_languages = current_teacher.teacher_languages
   end
 end

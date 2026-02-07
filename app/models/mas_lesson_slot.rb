@@ -2,7 +2,7 @@ class MasLessonSlot < ApplicationRecord
   has_many :lesson_slots, dependent: :destroy
 
   def end_time
-    start_time + duration_minutes.minutes
+    start_time + 50.minutes
   end
 
   def label

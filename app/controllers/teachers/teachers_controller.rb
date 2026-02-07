@@ -1,6 +1,5 @@
 class Teachers::TeachersController < Teachers::BaseController
   before_action :set_teacher, only: %i[show edit update]
-  before_action :load_collections, only: %i[edit update]
 
   def show
   end
@@ -23,10 +22,6 @@ class Teachers::TeachersController < Teachers::BaseController
   end
 
   def teacher_params
-    params.expect(teacher: [:name, :profile, :profile_image, { mas_language_ids: [] }])
-  end
-
-  def load_collections
-    @mas_languages = MasLanguage.all
+    params.expect(teacher: [:name, :profile, :profile_image, { languages: [] }])
   end
 end

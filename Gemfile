@@ -21,6 +21,7 @@ gem 'image_processing'
 gem 'haml-rails' # hamlのため追加
 gem 'devise' # 認証のため追加
 gem 'simple_form' # フォームの入力を簡素化するため追加
+gem 'enumerize' # enum定義のため追加
 
 group :development, :test do
   gem 'debug', platforms: %i[mri windows], require: 'debug/prelude'

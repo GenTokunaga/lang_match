@@ -72,27 +72,20 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_31_091502) do
   create_table "lesson_slots", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.date "date", null: false
+    t.string "language", null: false
     t.bigint "mas_lesson_slot_id", null: false
-    t.bigint "teacher_language_id", null: false
+    t.bigint "teacher_id", null: false
     t.datetime "updated_at", null: false
     t.index ["mas_lesson_slot_id"], name: "index_lesson_slots_on_mas_lesson_slot_id"
-    t.index ["teacher_language_id", "date", "mas_lesson_slot_id"], name: "idx_on_teacher_language_id_date_mas_lesson_slot_id_82f6b3f19f", unique: true
-    t.index ["teacher_language_id"], name: "index_lesson_slots_on_teacher_language_id"
-  end
-
-  create_table "mas_languages", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.string "language", null: false
-    t.datetime "updated_at", null: false
-    t.index ["language"], name: "index_mas_languages_on_language", unique: true
+    t.index ["teacher_id", "date", "mas_lesson_slot_id", "language"], name: "idx_on_teacher_id_date_mas_lesson_slot_id_language_e02922f6b8", unique: true
+    t.index ["teacher_id"], name: "index_lesson_slots_on_teacher_id"
   end
 
   create_table "mas_lesson_slots", force: :cascade do |t|
     t.datetime "created_at", null: false
-    t.integer "duration_minutes", null: false
     t.time "start_time", null: false
     t.datetime "updated_at", null: false
-    t.index ["start_time", "duration_minutes"], name: "index_mas_lesson_slots_on_start_time_and_duration_minutes", unique: true
+    t.index ["start_time"], name: "index_mas_lesson_slots_on_start_time", unique: true
   end
 
   create_table "mas_ticket_prices", force: :cascade do |t|
@@ -122,22 +115,13 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_31_091502) do
     t.index ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true
   end
 
-  create_table "teacher_languages", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.bigint "mas_language_id", null: false
-    t.bigint "teacher_id", null: false
-    t.datetime "updated_at", null: false
-    t.index ["mas_language_id"], name: "index_teacher_languages_on_mas_language_id"
-    t.index ["teacher_id", "mas_language_id"], name: "index_teacher_languages_on_teacher_id_and_mas_language_id", unique: true
-    t.index ["teacher_id"], name: "index_teacher_languages_on_teacher_id"
-  end
-
   create_table "teachers", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "current_sign_in_at"
     t.string "current_sign_in_ip"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
+    t.string "languages", default: [], null: false, array: true
     t.datetime "last_sign_in_at"
     t.string "last_sign_in_ip"
     t.string "name", default: "", null: false
@@ -156,7 +140,5 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_31_091502) do
   add_foreign_key "lesson_reserves", "lesson_slots"
   add_foreign_key "lesson_reserves", "students"
   add_foreign_key "lesson_slots", "mas_lesson_slots"
-  add_foreign_key "lesson_slots", "teacher_languages"
-  add_foreign_key "teacher_languages", "mas_languages"
-  add_foreign_key "teacher_languages", "teachers"
+  add_foreign_key "lesson_slots", "teachers"
 end

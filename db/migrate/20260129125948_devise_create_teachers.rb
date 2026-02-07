@@ -5,6 +5,7 @@ class DeviseCreateTeachers < ActiveRecord::Migration[8.1]
     create_table :teachers do |t|
       t.string :name,                    null: false, default: ''
       t.string :profile,                 null: false, default: ''
+      t.string :languages,               null: false, default: [], array: true
 
       ## Database authenticatable
       t.string :email,                   null: false, default: ''
