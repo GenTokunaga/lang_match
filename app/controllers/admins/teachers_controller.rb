@@ -18,7 +18,7 @@ class Admins::TeachersController < Admins::BaseController
   def create
     @admins_teacher = Teacher.new(admins_teacher_params)
     if @admins_teacher.save
-      redirect_to admins_teachers_path, notice: 'Teacher was successfully created.'
+      redirect_to admins_teachers_path, notice: '講師を作成しました'
     else
       render :new, status: :unprocessable_content
     end
@@ -26,7 +26,7 @@ class Admins::TeachersController < Admins::BaseController
 
   def update
     if @admins_teacher.update(admins_teacher_params)
-      redirect_to admins_teachers_path, notice: 'Teacher was successfully updated.', status: :see_other
+      redirect_to admins_teachers_path, notice: '講師を更新しました', status: :see_other
     else
       render :edit, status: :unprocessable_content
     end
@@ -34,7 +34,7 @@ class Admins::TeachersController < Admins::BaseController
 
   def destroy
     @admins_teacher.destroy!
-    redirect_to admins_teachers_path, notice: 'Teacher was successfully destroyed.', status: :see_other
+    redirect_to admins_teachers_path, notice: '講師を削除しました', status: :see_other
   end
 
   private

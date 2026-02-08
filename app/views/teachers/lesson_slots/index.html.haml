@@ -1,6 +1,5 @@
 %div.container
   %h1 レッスン一覧
-  %p{style: "color: green"}= notice
   %div.text-center
     = link_to "レッスン枠作成", new_teachers_lesson_slot_path, class: class_names("btn btn-primary my-3")
   - @lesson_slots.each do |lesson_slot|

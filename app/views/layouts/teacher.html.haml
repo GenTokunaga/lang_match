@@ -13,4 +13,7 @@
         %div.d-flex.justify-content-end
           = button_to "プロフィール", teachers_teacher_path(id: current_teacher.id), method: :get, class: "btn btn-secondary m-3"
           = button_to "ログアウト", destroy_teacher_session_path, method: :delete, class: "btn btn-secondary m-3"
+      - flash.each do |key, message|
+        .alert{ class: "alert-#{key == 'alert' ? 'danger' : 'info'}" }
+          = message
     = yield

@@ -1,6 +1,5 @@
 - content_for :title, "Show teacher"
 %div.container
-  %p{style: "color: green"}= notice
   = render @admins_teacher
   %div.d-flex.gap-3
     = link_to "戻る", admins_teachers_path, class: class_names("btn btn-secondary my-3")
