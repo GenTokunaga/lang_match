@@ -1,6 +1,6 @@
 class Teachers::LessonSlotsController < Teachers::BaseController
   before_action :set_lesson_slot, only: %i[destroy]
-  before_action :load_collections, only: %i[new create]
+  before_action :set_mas_lesson_slots, only: %i[new create]
 
   def index
     @lesson_slots = current_teacher.lesson_slots.preload(:mas_lesson_slot)
@@ -30,11 +30,11 @@ class Teachers::LessonSlotsController < Teachers::BaseController
     @lesson_slot = LessonSlot.find(params.expect(:id))
   end
 
-  def lesson_slot_params
-    params.expect(lesson_slot: %i[date mas_lesson_slot_id language])
+  def set_mas_lesson_slots
+    @mas_lesson_slots = MasLessonSlot.cached_all
   end
 
-  def load_collections
-    @mas_lesson_slots = MasLessonSlot.all
+  def lesson_slot_params
+    params.expect(lesson_slot: %i[date mas_lesson_slot_id language])
   end
 end
