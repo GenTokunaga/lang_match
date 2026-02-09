@@ -1,6 +1,5 @@
 class Teacher < ApplicationRecord
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :trackable
+  devise :database_authenticatable, :recoverable, :rememberable, :validatable, :trackable
 
   has_many :lesson_slots, dependent: :destroy
   has_one_attached :profile_image do |a|

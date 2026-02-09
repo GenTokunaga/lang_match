@@ -6,7 +6,6 @@ Rails.application.routes.draw do
     sessions: 'students/sessions',
   }
   devise_for :teachers, controllers: {
-    registrations: 'teachers/registrations',
     sessions: 'teachers/sessions',
   }
 
@@ -22,7 +21,7 @@ Rails.application.routes.draw do
 
   namespace :teachers do
     root 'lesson_slots#index'
-    resources :teachers, only: %i[show edit update]
+    resource :profile, only: %i[show edit update]
     resources :lesson_slots, only: %i[index new create destroy]
   end
 end

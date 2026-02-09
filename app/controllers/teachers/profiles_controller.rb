@@ -1,4 +1,4 @@
-class Teachers::TeachersController < Teachers::BaseController
+class Teachers::ProfilesController < Teachers::BaseController
   before_action :set_teacher, only: %i[show edit update]
 
   def show
@@ -18,7 +18,7 @@ class Teachers::TeachersController < Teachers::BaseController
   private
 
   def set_teacher
-    @teacher = Teacher.find(params.expect(:id))
+    @teacher = current_teacher
   end
 
   def teacher_params

@@ -1,15 +1,15 @@
 %div.card
-  - if teacher.profile_image.attached?
+  - if @teacher.profile_image.attached?
     %div= image_tag teacher.profile_image.variant(:thumb)
   %div
     %strong 氏名:
-    = teacher.name
+    = @teacher.name
   %div
     %strong メールアドレス:
-    = teacher.email
+    = @teacher.email
   %div
     %strong プロフィール:
-    = teacher.profile
+    = @teacher.profile
   %div
     %strong 教えられる言語:
-    = teacher.languages.values.map(&:text).join(",")
+    = @teacher.languages.values.map(&:text).join(",")
