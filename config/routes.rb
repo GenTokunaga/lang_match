@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   end
 
   namespace :students do
-    root to: 'dashboard#index'
+    root 'lesson_reserves#index'
   end
 
   namespace :teachers do
