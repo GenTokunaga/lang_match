@@ -11,8 +11,6 @@ class Teacher < ApplicationRecord
   enumerize :languages, in: %i[japanese chinese korean thai myanmar vietnamese], multiple: true
 
   def language_options_for_select
-    languages.map do |key|
-      [self.class.languages.find_value(key).text, key]
-    end
+    languages.map { [Teacher.languages.find_value(_1).text, _1] }
   end
 end
