@@ -72,29 +72,13 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_31_091502) do
     t.datetime "created_at", null: false
     t.date "date", null: false
     t.string "language", null: false
-    t.bigint "mas_lesson_slot_id", null: false
+    t.time "start_time", null: false
     t.bigint "teacher_id", null: false
     t.datetime "updated_at", null: false
     t.index ["date"], name: "index_lesson_slots_on_date"
     t.index ["language"], name: "index_lesson_slots_on_language"
-    t.index ["mas_lesson_slot_id"], name: "index_lesson_slots_on_mas_lesson_slot_id"
-    t.index ["teacher_id", "date", "mas_lesson_slot_id"], name: "idx_on_teacher_id_date_mas_lesson_slot_id_655c682749", unique: true
+    t.index ["teacher_id", "date", "start_time"], name: "index_lesson_slots_on_teacher_id_and_date_and_start_time", unique: true
     t.index ["teacher_id"], name: "index_lesson_slots_on_teacher_id"
-  end
-
-  create_table "mas_lesson_slots", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.time "start_time", null: false
-    t.datetime "updated_at", null: false
-    t.index ["start_time"], name: "index_mas_lesson_slots_on_start_time", unique: true
-  end
-
-  create_table "mas_ticket_prices", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.integer "price", null: false
-    t.integer "ticket_count", null: false
-    t.datetime "updated_at", null: false
-    t.index ["ticket_count", "price"], name: "index_mas_ticket_prices_on_ticket_count_and_price", unique: true
   end
 
   create_table "students", force: :cascade do |t|
@@ -140,6 +124,5 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_31_091502) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "lesson_reserves", "lesson_slots"
   add_foreign_key "lesson_reserves", "students"
-  add_foreign_key "lesson_slots", "mas_lesson_slots"
   add_foreign_key "lesson_slots", "teachers"
 end

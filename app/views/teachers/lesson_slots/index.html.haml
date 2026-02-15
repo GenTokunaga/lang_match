@@ -7,6 +7,6 @@
     %div.card.mt-3
       %div.card-body.p-3
         = lesson_slot.date
-        = lesson_slot.mas_lesson_slot.label
+        = LessonSlotTime.format_time_range(lesson_slot.start_time)
         = lesson_slot.language.text
         = button_to "削除", teachers_lesson_slot_path(lesson_slot.id), method: :delete, class: "btn btn-primary"

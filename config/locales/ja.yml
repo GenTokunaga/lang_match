@@ -58,7 +58,7 @@ ja:
         languages: "言語"
       lesson_slot:
         date: "日付"
-        mas_lesson_slot_id: "レッスン枠"
+        start_time: "レッスン枠"
         language: "言語"
   enumerize:
     teacher:
