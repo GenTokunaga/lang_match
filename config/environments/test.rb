@@ -52,5 +52,5 @@ Rails.application.configure do
   config.action_controller.raise_on_missing_callback_actions = true
 
   # StrongParameter設定忘れ発見のため追記
-  config.action_controller.action_on_unpermitted_parameters=:raise
+  config.action_controller.action_on_unpermitted_parameters = :raise
 end
