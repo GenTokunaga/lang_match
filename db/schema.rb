@@ -50,7 +50,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_31_091502) do
     t.string "encrypted_password", default: "", null: false
     t.datetime "last_sign_in_at"
     t.string "last_sign_in_ip"
-    t.string "name", default: "", null: false
     t.datetime "remember_created_at"
     t.datetime "reset_password_sent_at"
     t.string "reset_password_token"
@@ -76,8 +75,10 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_31_091502) do
     t.bigint "mas_lesson_slot_id", null: false
     t.bigint "teacher_id", null: false
     t.datetime "updated_at", null: false
+    t.index ["date"], name: "index_lesson_slots_on_date"
+    t.index ["language"], name: "index_lesson_slots_on_language"
     t.index ["mas_lesson_slot_id"], name: "index_lesson_slots_on_mas_lesson_slot_id"
-    t.index ["teacher_id", "date", "mas_lesson_slot_id", "language"], name: "idx_on_teacher_id_date_mas_lesson_slot_id_language_e02922f6b8", unique: true
+    t.index ["teacher_id", "date", "mas_lesson_slot_id"], name: "idx_on_teacher_id_date_mas_lesson_slot_id_655c682749", unique: true
     t.index ["teacher_id"], name: "index_lesson_slots_on_teacher_id"
   end
 
