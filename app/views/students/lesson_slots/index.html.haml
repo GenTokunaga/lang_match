@@ -1,0 +1,38 @@
+- content_for :title, "レッスン一覧"
+%div.container
+  %h1 レッスン一覧
+  = simple_form_for :search, url: students_lesson_slots_path, method: :get, html: { class: "search-form" } do |f|
+    .search-row
+      %h4 日付範囲
+      .date-range
+        = f.input :start_date,
+          as: :string,
+          label: false,
+          input_html: {type: "date", name: "start_date", value: params[:start_date]}
+        = f.input :end_date,
+          as: :string,
+          label: false,
+          input_html: {type: "date", name: "end_date", value: params[:end_date]}
+    .search-row
+      %h4 開始時間
+      .time-grid
+        - LessonSlotTime.options_for_select.each do |format, time|
+          .checkbox
+            = check_box_tag "start_times[]", time, params[:start_times]&.include?(time.to_s)
+            = label_tag time, format
+    .search-row
+      %h4 言語
+      .language-grid
+        - Teacher.languages.options.each do |label, value|
+          .checkbox
+            = check_box_tag "languages[]", value, params[:languages]&.include?(value)
+            = label_tag value, label
+    .search-row
+      = f.button :submit, "検索", class: "btn btn-primary mt-3"
+  - @lesson_slots.each do |lesson_slot|
+    %div.card.mt-3
+      %div.card-body.p-3
+        = lesson_slot.date
+        = LessonSlotTime.format_time_range(lesson_slot.start_time)
+        = lesson_slot.language.text
+        = link_to "詳細", students_lesson_slot_path(lesson_slot.id), class: "btn btn-primary"

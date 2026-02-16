@@ -17,8 +17,9 @@ Rails.application.routes.draw do
   end
 
   namespace :students do
-    root 'lesson_reserves#index'
+    root 'lesson_slots#index'
     resources :lesson_reserves, only: %i[index]
+    resources :lesson_slots, only: %i[index]
   end
 
   namespace :teachers do
