@@ -94,7 +94,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_31_091502) do
     t.datetime "reset_password_sent_at"
     t.string "reset_password_token"
     t.integer "sign_in_count", default: 0, null: false
-    t.integer "ticket_count", null: false
+    t.integer "ticket_count", default: 0, null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_students_on_email", unique: true
     t.index ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true

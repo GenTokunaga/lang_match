@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   }
   devise_for :students, controllers: {
     sessions: 'students/sessions',
+    registrations: 'students/registrations',
   }
   devise_for :teachers, controllers: {
     sessions: 'teachers/sessions',
@@ -17,6 +18,7 @@ Rails.application.routes.draw do
 
   namespace :students do
     root 'lesson_reserves#index'
+    resources :lesson_reserves, only: %i[index]
   end
 
   namespace :teachers do

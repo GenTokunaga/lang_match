@@ -1,0 +1,14 @@
+!!!
+%html
+  = render "layouts/header"
+  %body
+    %div.container
+      %div.d-flex.justify-content-end
+        - if student_signed_in?
+          = button_to "ログアウト", destroy_student_session_path, method: :delete, class: "btn btn-secondary m-3"
+        - elsif (controller_name == "sessions" && action_name == "new")
+          = link_to "新規アカウント登録", new_student_registration_path, class: "btn btn-secondary m-3"
+      - flash.each do |key, message|
+        .alert{ class: "alert-#{key == 'alert' ? 'danger' : 'info'}" }
+          = message
+    = yield

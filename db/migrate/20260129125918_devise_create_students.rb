@@ -4,7 +4,7 @@ class DeviseCreateStudents < ActiveRecord::Migration[8.1]
   def change
     create_table :students do |t|
       t.string  :name,              null: false, default: ''
-      t.integer :ticket_count,      null: false, default: ''
+      t.integer :ticket_count,      null: false, default: 0
 
       ## Database authenticatable
       t.string :email,              null: false, default: ''
