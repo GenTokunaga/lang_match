@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   namespace :students do
     root 'lesson_slots#index'
     resources :lesson_reserves, only: %i[index]
-    resources :lesson_slots, only: %i[index]
+    resources :lesson_slots, only: %i[index show]
   end
 
   namespace :teachers do
