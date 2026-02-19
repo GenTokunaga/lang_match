@@ -1,4 +1,4 @@
-class TicketPrice < ApplicationRecord
+class TicketPrice
   PRICES = [
     { ticket_count: 1, price: 2000 },
     { ticket_count: 3, price: 5000 },

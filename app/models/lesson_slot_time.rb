@@ -1,4 +1,4 @@
-class LessonSlotTime < ApplicationRecord
+class LessonSlotTime
   TIMES = [
     '07:00',
     '08:00',
