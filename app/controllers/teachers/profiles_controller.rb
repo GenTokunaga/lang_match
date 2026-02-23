@@ -18,7 +18,7 @@ class Teachers::ProfilesController < Teachers::BaseController
   private
 
   def set_teacher
-    @teacher = current_teacher
+    @teacher = Teacher.find(current_teacher.id)
   end
 
   def teacher_params
