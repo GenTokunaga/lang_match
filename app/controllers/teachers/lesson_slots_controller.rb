@@ -6,7 +6,7 @@ class Teachers::LessonSlotsController < Teachers::BaseController
   end
 
   def new
-    @lesson_slot = LessonSlot.new
+    @lesson_slot = current_teacher.lesson_slots.build
   end
 
   def create
@@ -26,7 +26,7 @@ class Teachers::LessonSlotsController < Teachers::BaseController
   private
 
   def set_lesson_slot
-    @lesson_slot = LessonSlot.find(params.expect(:id))
+    @lesson_slot = current_teacher.lesson_slots.find(params.expect(:id))
   end
 
   def lesson_slot_params
