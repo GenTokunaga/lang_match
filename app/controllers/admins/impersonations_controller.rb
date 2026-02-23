@@ -2,13 +2,13 @@ class Admins::ImpersonationsController < Admins::BaseController
   before_action :set_admins_teacher, only: %i[create]
 
   def create
-    session[:impersonator_admin_id] = current_admin.id
+    impersonate!(current_admin)
     sign_in(:teacher, @admins_teacher)
     redirect_to teachers_root_path, notice: '講師としてログインしました'
   end
 
   def destroy
-    session.delete(:impersonator_admin_id)
+    clear_impersonation!
     sign_out(:teacher)
     redirect_to admins_root_path, notice: '講師からログアウトしました'
   end

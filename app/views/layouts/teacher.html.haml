@@ -3,7 +3,6 @@
   = render "layouts/header"
   %body
     %div.container
-      - impersonator_admin_id = session[:impersonator_admin_id]
       - if impersonator_admin_id.present?
         %div.d-flex.justify-content-end
           = link_to "プロフィール", teachers_profile_path, class: "btn btn-secondary m-3"
