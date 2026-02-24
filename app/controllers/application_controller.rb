@@ -2,12 +2,12 @@ class ApplicationController < ActionController::Base
   allow_browser versions: :modern
 
   # sessionに関する処理はscope横断で機能させるため、ApplicationControllerで一元管理する
-  helper_method :impersonator_admin_id
+  helper_method :signed_in_by_impersonator?
 
   private
 
-  def impersonator_admin_id
-    session[:impersonator_admin_id]
+  def signed_in_by_impersonator?
+    session[:impersonator_admin_id].present?
   end
 
   def impersonate(admin)
