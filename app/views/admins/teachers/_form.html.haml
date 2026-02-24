@@ -1,0 +1,11 @@
+%div
+  = simple_form_for([:admins, @admins_teacher]) do |f|
+    = f.error_notification
+    = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+    .form-inputs
+      = f.input :name
+      = f.input :email, as: "email"
+      = f.input :password, as: "password"
+      = f.input :password_confirmation, as: "password"
+    .form-actions
+      = f.button :submit, "登録・編集", class: class_names("btn btn-primary my-3")

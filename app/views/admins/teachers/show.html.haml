@@ -1,0 +1,8 @@
+- content_for :title, "講師表示"
+%div.container
+  = render @admins_teacher
+  %div.d-flex.gap-3
+    = link_to "戻る", admins_teachers_path, class: class_names("btn btn-secondary my-3")
+    = link_to "編集", edit_admins_teacher_path(@admins_teacher), class: class_names("btn btn-primary my-3")
+    = button_to "削除", admins_teacher_path(@admins_teacher), method: :delete, class: class_names("btn btn-primary my-3")
+    = button_to "このユーザーでログイン", admins_impersonation_path(id: @admins_teacher.id), class: class_names("btn btn-primary my-3")

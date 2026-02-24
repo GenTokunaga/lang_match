@@ -1,0 +1,12 @@
+- content_for :title, "レッスン一覧"
+%div.container
+  %h1 レッスン一覧
+  %div.text-center
+    = link_to "レッスン枠作成", new_teachers_lesson_slot_path, class: class_names("btn btn-primary my-3")
+  - @lesson_slots.each do |lesson_slot|
+    %div.card.mt-3
+      %div.card-body.p-3
+        = lesson_slot.date
+        = LessonSlotTime.format_time_range(lesson_slot.start_time)
+        = lesson_slot.language.text
+        = button_to "削除", teachers_lesson_slot_path(lesson_slot.id), method: :delete, class: "btn btn-primary"

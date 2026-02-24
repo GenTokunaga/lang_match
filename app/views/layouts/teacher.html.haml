@@ -1,0 +1,18 @@
+!!!
+%html
+  = render "layouts/header"
+  %body
+    %div.container
+      - if signed_in_by_impersonator?
+        %div.d-flex.justify-content-end
+          = link_to "プロフィール", teachers_profile_path, class: "btn btn-secondary m-3"
+          = button_to "管理画面に戻る", admins_impersonation_path, method: :delete, class: "btn btn-secondary m-3"
+        %div{style: "color: orange"}= "管理者ユーザーが代わりにログインしています"
+      - elsif teacher_signed_in?
+        %div.d-flex.justify-content-end
+          = link_to "プロフィール", teachers_profile_path, class: "btn btn-secondary m-3"
+          = button_to "ログアウト", destroy_teacher_session_path, method: :delete, class: "btn btn-secondary m-3"
+      - flash.each do |key, message|
+        .alert{ class: "alert-#{key == 'alert' ? 'danger' : 'info'}" }
+          = message
+    = yield

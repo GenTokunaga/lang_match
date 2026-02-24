@@ -1,0 +1,11 @@
+%div
+  = simple_form_for([:teachers, @lesson_slot]) do |f|
+    = f.error_notification
+    = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+    .form-inputs
+      = f.label :date, class: class_names('control-label')
+      = f.date_field :date, class: class_names('form-control')
+      = f.input :start_time, collection: LessonSlotTime.options_for_select
+      = f.input :language, collection: current_teacher.language_options_for_select
+    .form-actions
+      = f.button :submit, "登録", class: class_names("btn btn-primary my-3")

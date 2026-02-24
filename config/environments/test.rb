@@ -50,4 +50,7 @@ Rails.application.configure do
 
   # Raise error when a before_action's only/except options reference missing actions.
   config.action_controller.raise_on_missing_callback_actions = true
+
+  # StrongParameter設定忘れ発見のため追記
+  config.action_controller.action_on_unpermitted_parameters = :raise
 end

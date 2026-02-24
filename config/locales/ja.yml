@@ -1,0 +1,79 @@
+ja:
+  time:
+    formats:
+      default: "%Y/%m/%d %H:%M"
+      lesson_slot: "%H:%M"
+  activerecord:
+    models:
+      admin: "管理者"
+      student: "生徒"
+      teacher: "講師"
+    attributes:
+      admin:
+        name: "ユーザー名"
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "パスワード(確認用)"
+      student:
+        name: "ユーザー名"
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "パスワード(確認用)"
+      teacher:
+        name: "ユーザー名"
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "パスワード(確認用)"
+        profile: "プロフィール"
+        profile_image: "プロフィール画像"
+      lesson_slot:
+        language: "言語"
+  devise:
+    sessions:
+      admin:
+        signed_in: "管理者としてログインしました。"
+        signed_out: "管理者としてログアウトしました。"
+      teacher:
+        signed_in: "講師としてログインしました。"
+        signed_out: "講師としてログアウトしました。"
+  simple_form:
+    labels:
+      admin:
+        name: "ユーザー名"
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "パスワード(確認用)"
+      student:
+        name: "ユーザー名"
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "パスワード(確認用)"
+      teacher:
+        name: "ユーザー名"
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "パスワード(確認用)"
+        profile: "プロフィール"
+        profile_image: "プロフィール画像"
+        languages: "言語"
+      lesson_slot:
+        date: "日付"
+        start_time: "レッスン枠"
+        language: "言語"
+  enumerize:
+    teacher:
+      languages:
+        japanese: "日本語"
+        chinese: "中国語"
+        korean: "韓国語"
+        thai: "タイ語"
+        myanmar: "ミャンマー語"
+        vietnamese: "ベトナム語"
+    lesson_slot:
+      language:
+        japanese: "日本語"
+        chinese: "中国語"
+        korean: "韓国語"
+        thai: "タイ語"
+        myanmar: "ミャンマー語"
+        vietnamese: "ベトナム語"

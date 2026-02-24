@@ -1,0 +1,12 @@
+!!!
+%html
+  = render "layouts/header"
+  %body
+    %div.container
+      - if admin_signed_in?
+        %div.d-flex.justify-content-end
+          = button_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-secondary m-3"
+      - flash.each do |key, message|
+        .alert{ class: "alert-#{key == 'alert' ? 'danger' : 'info'}" }
+          = message
+    = yield

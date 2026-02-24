@@ -1,0 +1,6 @@
+- content_for :title, "講師登録"
+%div.container
+  %h1 講師登録
+  = render "form", admins_teacher: @admins_teacher
+  %div
+    = link_to "戻る", admins_teachers_path, class: class_names("btn btn-secondary")
