@@ -78,7 +78,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_31_091502) do
     t.index ["date"], name: "index_lesson_slots_on_date"
     t.index ["language"], name: "index_lesson_slots_on_language"
     t.index ["teacher_id", "date", "start_time"], name: "index_lesson_slots_on_teacher_id_and_date_and_start_time", unique: true
-    t.index ["teacher_id"], name: "index_lesson_slots_on_teacher_id"
   end
 
   create_table "students", force: :cascade do |t|

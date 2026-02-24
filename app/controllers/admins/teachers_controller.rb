@@ -2,7 +2,7 @@ class Admins::TeachersController < Admins::BaseController
   before_action :set_admins_teacher, only: %i[show edit update destroy]
 
   def index
-    @admins_teachers = Teacher.all
+    @admins_teachers = Teacher.order_name
   end
 
   def show

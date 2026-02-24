@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   namespace :admins do
     root 'teachers#index'
     resources :teachers, only: %i[index show new edit create update destroy]
-    resources :impersonations, only: %i[create destroy]
+    resource :impersonation, only: %i[create destroy]
   end
 
   namespace :students do
