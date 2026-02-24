@@ -4,7 +4,7 @@ class Students::RegistrationsController < Devise::RegistrationsController
 
   def new
     super
-    session.delete(:impersonator_admin_id)
+    clear_impersonation
   end
 
   protected
