@@ -2,11 +2,6 @@ class Students::RegistrationsController < Devise::RegistrationsController
   layout 'student'
   before_action :configure_permitted_parameters
 
-  def new
-    super
-    clear_impersonation
-  end
-
   protected
 
   def after_sign_up_path_for(resource)
