@@ -1,6 +1,6 @@
 %div.card
   - if @teacher.profile_image.attached?
-    %div= image_tag teacher.profile_image.variant(:thumb)
+    %div= image_tag @teacher.profile_image.variant(:thumb)
   %div
     %strong 氏名:
     = @teacher.name

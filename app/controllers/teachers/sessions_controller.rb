@@ -3,7 +3,7 @@ class Teachers::SessionsController < Devise::SessionsController
 
   def new
     super
-    session.delete(:impersonator_admin_id)
+    clear_impersonation
   end
 
   protected
