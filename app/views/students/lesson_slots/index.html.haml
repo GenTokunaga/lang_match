@@ -3,12 +3,14 @@
   %h1 レッスン一覧
   = simple_form_for :search, url: students_lesson_slots_path, method: :get, html: { class: "search-form" } do |f|
     .search-row
-      %h4 日付範囲
+      %h4.mb-3 日付範囲
       .date-range
         = f.input :start_date,
           as: :string,
           label: false,
           input_html: {type: "date", name: "start_date", value: params[:start_date]}
+        .div.mb-3
+          ～
         = f.input :end_date,
           as: :string,
           label: false,
@@ -35,4 +37,3 @@
         = lesson_slot.date
         = LessonSlotTime.format_time_range(lesson_slot.start_time)
         = lesson_slot.language.text
-        = link_to "詳細", students_lesson_slot_path(lesson_slot.id), class: "btn btn-primary"

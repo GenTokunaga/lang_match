@@ -7,9 +7,9 @@
 ====================== */
 .search-row {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 16px;
-  margin-bottom: 12px;
+  margin-top: 12px;
 }
 
 .search-row h4 {
@@ -20,13 +20,14 @@
 
 .date-range {
   display: flex;
+  align-items: center;
   gap: 16px;
-  align-items: end;
 }
 
 .time-grid,
 .language-grid {
   display: flex;
+  align-items: center;
   flex-wrap: wrap;
   gap: 8px 16px;
 }
