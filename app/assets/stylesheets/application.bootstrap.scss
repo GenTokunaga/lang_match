@@ -7,7 +7,7 @@
 ====================== */
 .search-row {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 16px;
   margin-top: 12px;
 }
@@ -20,20 +20,13 @@
 
 .date-range {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 16px;
 }
 
-.time-grid,
-.language-grid {
-  display: flex;
-  align-items: center;
+.check_boxes {
+  display: flex; 
+  align-items: flex-start;
   flex-wrap: wrap;
-  gap: 8px 16px;
-}
-
-.checkbox {
-  display: flex;
-  align-items: center;
   gap: 6px;
 }

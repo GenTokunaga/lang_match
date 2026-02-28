@@ -13,13 +13,15 @@ class LessonSlot < ApplicationRecord
   }
 
   scope :with_start_times, ->(times) {
-    return all if times.blank?
+    values = Array(times).compact_blank
+    return all if values.empty?
 
     where(start_time: times)
   }
 
   scope :with_languages, ->(langs) {
-    return all if langs.blank?
+    values = Array(langs).compact_blank
+    return all if values.empty?
 
     where(language: langs)
   }
