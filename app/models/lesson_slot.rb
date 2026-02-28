@@ -6,7 +6,7 @@ class LessonSlot < ApplicationRecord
 
   enumerize :language, in: Teacher.languages.values
 
-  scope :between_dates, ->(start_date, end_date) {
+  scope :between_start_end_dates, ->(start_date, end_date) {
     return all if start_date.blank? || end_date.blank?
 
     where(date: start_date..end_date)
@@ -26,7 +26,7 @@ class LessonSlot < ApplicationRecord
     where(language: langs)
   }
 
-  scope :ordered, -> {
+  scope :order_date_time_language, -> {
     order(date: :asc, start_time: :asc, language: :asc)
   }
 end

@@ -2,9 +2,9 @@ class Students::LessonSlotsController < Students::BaseController
   def index
     search = params.fetch(:search, {})
     @lesson_slots = LessonSlot.all
-                              .between_dates(search[:start_date], search[:end_date])
+                              .between_start_end_dates(search[:start_date], search[:end_date])
                               .with_start_times(search[:start_times])
                               .with_languages(search[:languages])
-                              .ordered
+                              .order_date_time_language
   end
 end
