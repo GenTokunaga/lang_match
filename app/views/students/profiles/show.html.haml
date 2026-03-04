@@ -1,0 +1,6 @@
+- content_for :title, "講師表示"
+%div.container
+  = render "student"
+  %div.d-flex.gap-3
+    = link_to "戻る", students_root_path, class: class_names("btn btn-secondary my-3")
+    = link_to "チケット購入", edit_students_profile_path, class: class_names("btn btn-primary my-3")

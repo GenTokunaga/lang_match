@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
   namespace :students do
     root 'lesson_slots#index'
+    resource :profile, only: %i[show edit update]
     resources :lesson_reserves, only: %i[index]
     resources :lesson_slots, only: %i[index]
   end

@@ -1,0 +1,7 @@
+- content_for :title, "チケット購入"
+%div.container
+  %h1 チケット購入
+  = render "form"
+  %div
+    = link_to "戻る", students_root_path, class: class_names("btn btn-secondary my-3")
+    = link_to "参照", students_profile_path, class: class_names("btn btn-secondary my-3")

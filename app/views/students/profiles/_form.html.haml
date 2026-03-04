@@ -1,0 +1,5 @@
+%div
+  = simple_form_for @student, url: students_profile_path do |f|
+    = f.input :ticket_count
+    .form-actions
+      = f.button :submit, "チケット購入", class: class_names("btn btn-primary my-3")
