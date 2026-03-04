@@ -9,21 +9,21 @@ class LessonSlot < ApplicationRecord
   scope :between_start_end_dates, ->(start_date, end_date) {
     return all if start_date.blank? || end_date.blank?
 
-    where(date: start_date..end_date)
+    where(date: Date.parse(start_date)..Date.parse(end_date))
   }
 
   scope :with_start_times, ->(times) {
-    values = Array(times).compact_blank
+    values = Array(times).compact_blank.map { Time.zone.parse(_1) }
     return all if values.empty?
 
-    where(start_time: times)
+    where(start_time: values)
   }
 
   scope :with_languages, ->(langs) {
     values = Array(langs).compact_blank
     return all if values.empty?
 
-    where(language: langs)
+    where(language: values)
   }
 
   scope :order_date_time_language, -> {
