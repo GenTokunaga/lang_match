@@ -1,0 +1,39 @@
+- content_for :title, "レッスン一覧"
+%div.container
+  %h1 レッスン一覧
+  = simple_form_for :search, url: students_lesson_slots_path, method: :get do |f|
+    .lesson-slot-search-row
+      %h4.mb-3 日付範囲
+      .lesson-slot-date-range
+        = f.input :start_date,
+          label: false,
+          input_html: {type: "date", value: params.dig(:search, :start_date)}
+        .div.mb-3
+          ～
+        = f.input :end_date,
+          label: false,
+          input_html: {type: "date", value: params.dig(:search, :end_date)}
+    .lesson-slot-search-row
+      %h4 開始時間
+      = f.input :start_times,
+        as: :check_boxes,
+        collection: LessonSlotTime.options_for_select,
+        label: false,
+        legend_tag: false,
+        checked: params.dig(:search, :start_times)
+    .lesson-slot-search-row
+      %h4 言語
+      = f.input :languages,
+        as: :check_boxes,
+        collection: Teacher.languages.options,
+        label: false,
+        legend_tag: false,
+        checked: params.dig(:search, :languages)
+    .lesson-slot-search-row
+      = f.button :submit, "検索", class: "btn btn-primary mt-3"
+  - @lesson_slots.each do |lesson_slot|
+    %div.card.mt-3
+      %div.card-body.p-3
+        = lesson_slot.date
+        = LessonSlotTime.format_time_range(lesson_slot.start_time)
+        = lesson_slot.language.text

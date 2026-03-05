@@ -2,7 +2,7 @@ class Teachers::LessonSlotsController < Teachers::BaseController
   before_action :set_lesson_slot, only: %i[destroy]
 
   def index
-    @lesson_slots = current_teacher.lesson_slots
+    @lesson_slots = current_teacher.lesson_slots.order_date_time_language
   end
 
   def new

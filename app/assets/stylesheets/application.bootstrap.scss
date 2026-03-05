@@ -1,2 +1,29 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
+
+/* LessonSlot 検索フォーム */
+.lesson-slot-search-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.lesson-slot-search-row h4 {
+  width: 150px;
+  min-width: 150px;
+  margin: 0;
+}
+
+.lesson-slot-date-range {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.check_boxes {
+  display: flex; 
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 6px;
+}
